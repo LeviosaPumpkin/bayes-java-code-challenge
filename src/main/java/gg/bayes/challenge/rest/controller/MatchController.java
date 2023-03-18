@@ -4,8 +4,11 @@ import gg.bayes.challenge.rest.model.HeroDamage;
 import gg.bayes.challenge.rest.model.HeroItem;
 import gg.bayes.challenge.rest.model.HeroKills;
 import gg.bayes.challenge.rest.model.HeroSpells;
+import gg.bayes.challenge.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +22,8 @@ import java.util.List;
 @RequestMapping("/api/match")
 @Validated
 public class MatchController {
+    @Autowired
+    private LogService logService;
 
     /**
      * Ingests a DOTA combat log file, parses and persists relevant events data. All events are associated with the same
@@ -29,7 +34,7 @@ public class MatchController {
      */
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<Long> ingestCombatLog(@RequestBody @NotBlank String combatLog) {
-        throw new NotImplementedException("TODO: implement");
+        return new ResponseEntity<>(logService.writeLog(combatLog), HttpStatus.CREATED);
     }
 
     /**

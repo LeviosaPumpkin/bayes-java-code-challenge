@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CombatLogEntryRepository extends JpaRepository<CombatLogEntryEntity, Long> {
-    // TODO: add the necessary methods for your solution
+
 }
