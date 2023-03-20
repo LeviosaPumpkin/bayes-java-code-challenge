@@ -1,13 +1,16 @@
 package gg.bayes.challenge.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Value;
 
-@Value
+@Data
+@AllArgsConstructor
 public class HeroDamage {
     String target;
     @JsonProperty("damage_instances")
-    Integer damageInstances;
+    Long damageInstances;
     @JsonProperty("total_damage")
-    Integer totalDamage;
+    Long totalDamage;
 }

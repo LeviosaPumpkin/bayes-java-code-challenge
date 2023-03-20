@@ -102,7 +102,6 @@ public class MatchController {
     public ResponseEntity<List<HeroDamage>> getHeroDamages(
             @PathVariable("matchId") Long matchId,
             @PathVariable("heroName") String heroName) {
-
-        throw new NotImplementedException("TODO: implement");
+        return new ResponseEntity<>(matchRepository.findHeroDamageByMatch(matchId, heroName), HttpStatus.OK);
     }
 }
