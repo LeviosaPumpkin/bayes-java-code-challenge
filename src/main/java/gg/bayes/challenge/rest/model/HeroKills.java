@@ -1,9 +1,12 @@
 package gg.bayes.challenge.rest.model;
 
-import lombok.Value;
+import lombok.*;
 
-@Value
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class HeroKills {
     String hero;
-    Integer kills;
+    Long kills;
 }

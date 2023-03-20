@@ -1,5 +1,6 @@
 package gg.bayes.challenge.rest.controller;
 
+import gg.bayes.challenge.persistence.repository.MatchRepository;
 import gg.bayes.challenge.rest.model.HeroDamage;
 import gg.bayes.challenge.rest.model.HeroItem;
 import gg.bayes.challenge.rest.model.HeroKills;
@@ -24,6 +25,8 @@ import java.util.List;
 public class MatchController {
     @Autowired
     private LogService logService;
+    @Autowired
+    private MatchRepository matchRepository;
 
     /**
      * Ingests a DOTA combat log file, parses and persists relevant events data. All events are associated with the same
@@ -48,7 +51,7 @@ public class MatchController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<List<HeroKills>> getMatch(@PathVariable("matchId") Long matchId) {
-        throw new NotImplementedException("TODO: implement");
+        return new ResponseEntity<>(matchRepository.findHeroKillsByMatch(matchId), HttpStatus.OK);
     }
 
     /**

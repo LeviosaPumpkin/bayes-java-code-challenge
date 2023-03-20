@@ -26,7 +26,6 @@ public class LogUtils {
     }
 
     public static String getActor(String log) {
-        System.out.println(log);
         return log.substring(log.indexOf(ACTOR_PREFIX) + ACTOR_PREFIX_LENGTH,
                 log.indexOf(" ", log.indexOf(ACTOR_PREFIX) + ACTOR_PREFIX_LENGTH));
     }
