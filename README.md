@@ -2,4 +2,8 @@
 
 This is the [task](TASK.md).
 
-Any additional information about your solution goes here.
+To run the application use:
+
+`mvn spring-boot:run -f pom.xml
+`
+

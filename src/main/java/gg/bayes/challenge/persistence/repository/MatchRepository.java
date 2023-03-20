@@ -35,7 +35,6 @@ public interface MatchRepository extends JpaRepository<MatchEntity, Long> {
             "group by log.ability")
     List<HeroSpells> findHeroSpellsByMatch(Long matchId, String hero);
 
-    //select target, count(*), sum(damage) from dota_combat_log where match_id = 1 and actor = 'bloodseeker' and entry_type = 'DAMAGE_DONE' group by target;
     @Query("select new gg.bayes.challenge.rest.model.HeroDamage(log.target, count(*), sum(log.damage)) " +
             "from CombatLogEntryEntity log " +
             "where type = 'DAMAGE_DONE' " +

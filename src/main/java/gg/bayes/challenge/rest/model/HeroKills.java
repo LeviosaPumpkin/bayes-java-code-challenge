@@ -2,7 +2,7 @@ package gg.bayes.challenge.rest.model;
 
 import lombok.*;
 
-@Data
+@Value
 @AllArgsConstructor
 public class HeroKills {
     String hero;
