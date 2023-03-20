@@ -4,6 +4,7 @@ import gg.bayes.challenge.persistence.model.MatchEntity;
 import gg.bayes.challenge.rest.model.HeroDamage;
 import gg.bayes.challenge.rest.model.HeroItem;
 import gg.bayes.challenge.rest.model.HeroKills;
+import gg.bayes.challenge.rest.model.HeroSpells;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,12 @@ public interface MatchRepository extends JpaRepository<MatchEntity, Long> {
             "and match_id = ?1 " +
             "and actor = ?2")
     List<HeroItem> findHeroItemsByMatch(Long matchId, String hero);
+
+    @Query("select new gg.bayes.challenge.rest.model.HeroSpells(log.ability, count(*)) " +
+            "from CombatLogEntryEntity log " +
+            "where type = 'SPELL_CAST' " +
+            "and match_id = ?1 " +
+            "and actor = ?2 " +
+            "group by log.ability")
+    List<HeroSpells> findHeroSpellsByMatch(Long matchId, String hero);
 }
