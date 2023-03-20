@@ -1,10 +1,13 @@
 package gg.bayes.challenge.utils;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 
 public class LogUtils {
-    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss.SSS");
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
     public final static String ACTOR_PREFIX = "] npc_dota_hero_";
     private final static int ACTOR_PREFIX_LENGTH = ACTOR_PREFIX.length();
     public final static String ACTOR_KILLER_PREFIX = " by npc_dota_hero_";
@@ -22,7 +25,8 @@ public class LogUtils {
 
     public static long getTimestamp(String log) {
         String timeStr = log.substring(0, log.indexOf("]"));
-        return formatter.parse(timeStr).getLong(ChronoField.MILLI_OF_SECOND);
+        LocalTime time = LocalTime.from(formatter.parse(timeStr));
+        return time.toEpochSecond(LocalDate.EPOCH, ZoneOffset.MIN);
     }
 
     public static String getActor(String log) {
